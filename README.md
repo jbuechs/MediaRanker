@@ -1,7 +1,7 @@
 # Media Ranker
 
 ## ERD diagram
-![ERD Diagram](erd.png)
+![ERD Diagram](app/assets/images/erd.png)
 
 ## Trello Link
 <https://trello.com/b/HtPGMkir/media-ranker>
