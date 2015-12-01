@@ -89,6 +89,20 @@ books = [{title: "Ulysses",
            author: "Sandi Metz"},
          ]
 
-albums.each { |album| Album.create(album) }
-movies.each { |movie| Movie.create(movie) }
-books.each { |book| Book.create(book) }
+albums.each do |album|
+  a = Album.create(album)
+  a.upvotes = rand(1..50)
+  a.save
+end
+
+movies.each do |movie|
+  m = Movie.create(movie)
+  m.upvotes = rand(1..50)
+  m.save
+end
+
+books.each do |book|
+  b = Book.create(book)
+  b.upvotes = rand(1..50)
+  b.save
+end
