@@ -34,7 +34,29 @@ RSpec.describe MoviesController, type: :controller do
   end
 
   describe "POST 'create'" do
-
+    let(:good_params) do
+      {
+        movie: {
+          title: "Schindler's List 2",
+          director: "Steven Spielberg"
+        }
+      }
+    end
+    let(:bad_params) do
+      {
+        movie: {
+          title: "Schindler's List 2",
+        }
+      }
+    end
+    it "redirects to show page on success" do
+      post :create, good_params
+      expect(subject).to redirect_to movies_path
+    end
+    it "renders new page on fail" do
+      post :create, bad_params
+      expect(subject).to render_template :create
+    end
   end
 
   describe "PATCH 'update'" do
