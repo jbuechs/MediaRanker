@@ -60,7 +60,18 @@ RSpec.describe MoviesController, type: :controller do
   end
 
   describe "PATCH 'update'" do
-
+    it "redirects to show page" do
+      movie = Movie.create(title: "Schindler's List", director: "Steven Spielberg")
+      update_params = {
+        movie: {
+          title: "Schindler's List 2",
+          director: "Steven Spielberg"
+        },
+        id: movie.id
+      }
+      patch :update, update_params
+      expect(subject).to redirect_to movie_path(movie.id)
+    end
   end
 
   describe "DELETE 'destroy'" do
