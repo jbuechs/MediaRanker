@@ -55,7 +55,7 @@ RSpec.describe MoviesController, type: :controller do
     end
     it "renders new page on fail" do
       post :create, bad_params
-      expect(subject).to render_template :create
+      expect(subject).to render_template :new
     end
   end
 
