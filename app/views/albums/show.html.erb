@@ -3,7 +3,7 @@
     <h1><%= @album.title %> <small>Performed by: <%= @album.artist %></small> </h1>
     <h4>Upvotes: <%= @album.upvotes %></h4>
     <p><%= @album.description %></p>
-    <%= button_to "Upvote", "#", class: "btn btn-primary" %>
+    <td><%= button_to "Upvote", upvote_album_path(@album), method: :post, class: "btn btn-primary" %></td>
     <%= link_to "Edit #{@album.title}", edit_album_path(@album), method: :get, class: "btn btn-default" %>
     <%= link_to "DELETE", album_path(@album), method: :delete, data: { confirm: "Are you sure you want to delete #{@album.title}?"}, class: "btn btn-danger" %>
     <%= link_to "View all albums", albums_path, class: "btn btn-default" %>
