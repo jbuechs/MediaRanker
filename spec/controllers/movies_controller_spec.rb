@@ -17,7 +17,7 @@ RSpec.describe MoviesController, type: :controller do
 
   # describe "GET 'edit'" do
   #   it "renders edit view" do
-  #     movie = Movie.first
+  #     movie = Movie.create(title:"Schindler's List 2", director: "Steven Spielberg")
   #     get :edit, movie
   #     expect(subject).to render_template :edit, movie
   #   end
@@ -51,7 +51,8 @@ RSpec.describe MoviesController, type: :controller do
     end
     it "redirects to show page on success" do
       post :create, good_params
-      expect(subject).to redirect_to movies_path
+      new_movie = Movie.last
+      expect(subject).to redirect_to movie_path(new_movie.id)
     end
     it "renders new page on fail" do
       post :create, bad_params
@@ -60,7 +61,7 @@ RSpec.describe MoviesController, type: :controller do
   end
 
   describe "PATCH 'update'" do
-    it "redirects to show page" do
+    it "redirects to show page on success" do
       movie = Movie.create(title: "Schindler's List", director: "Steven Spielberg")
       update_params = {
         movie: {
