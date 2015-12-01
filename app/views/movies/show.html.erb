@@ -1,12 +1,2 @@
-<div class="row">
-  <div class="col-lg-12">
-    <h1><%= @movie.title %> <small>Directed by: <%= @movie.director %></small> </h1>
-    <h4>Upvotes: <%= @movie.upvotes %></h4>
-    <p><%= @movie.description %></p>
-    <%= button_to "Upvote", upvote_movie_path(@movie), method: :post, class: "btn btn-primary" %>
-    <%= link_to "Edit #{@movie.title}", edit_movie_path(@movie), method: :get, class: "btn btn-default" %>
-    <%= link_to "DELETE", movie_path(@movie), method: :delete, data: { confirm: "Are you sure you want to delete #{@movie.title}?"}, class: "btn btn-danger" %>
-    <%= link_to "View all movies", movies_path, class: "btn btn-default" %>
-    <%= link_to "View all Media", root_path, class: "btn btn-default" %>
-  </div>
-</div>
+<% provide(:who_by, "Directed by:") %>
+<%= render partial: 'shared/show', locals: {object: @movie, by: @movie.director} %>
