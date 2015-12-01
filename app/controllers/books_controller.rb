@@ -1,6 +1,19 @@
 class BooksController < ApplicationController
-  before_action :get_book only:[:show, :destroy, :update, :edit]
+  before_action :get_book, only:[:show, :destroy, :update, :edit]
   def index
+    @books = Book.all
+  end
+
+  def show
+  end
+
+  def destroy
+  end
+
+  def update
+  end
+
+  def edit
   end
 
   private
