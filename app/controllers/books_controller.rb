@@ -18,6 +18,13 @@ class BooksController < ApplicationController
   end
 
   def update
+    @book.update(book_params[:book])
+    redirect_to book_path(@book)
+  end
+
+  def create
+    Book.create(book_params[:book])
+    redirect_to books_path
   end
 
   def edit
@@ -26,5 +33,9 @@ class BooksController < ApplicationController
   private
   def get_book
     @book = Book.find(params[:id])
+  end
+
+  def book_params
+    params.permit(book:[:id, :title, :author, :description, :upvotes])
   end
 end
