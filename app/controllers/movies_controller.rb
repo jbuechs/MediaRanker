@@ -1,7 +1,20 @@
 class MoviesController < ApplicationController
-  before_action :get_movie only:[:show, :destroy, :update, :edit]
+  before_action :get_movie, only:[:show, :destroy, :update, :edit]
 
   def index
+    @movies = Movie.all
+  end
+
+  def show
+  end
+
+  def destroy
+  end
+
+  def update
+  end
+
+  def edit
   end
 
   private
