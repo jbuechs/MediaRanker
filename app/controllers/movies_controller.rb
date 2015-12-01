@@ -2,7 +2,7 @@ class MoviesController < ApplicationController
   before_action :get_movie, only:[:show, :destroy, :update, :edit, :upvote]
 
   def index
-    @movies = Movie.all
+    @movies = Movie.all.order(:upvotes).reverse
   end
 
   def new
