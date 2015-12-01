@@ -1,5 +1,5 @@
 class BooksController < ApplicationController
-  before_action :get_book, only:[:show, :destroy, :update, :edit]
+  before_action :get_book, only:[:show, :destroy, :update, :edit, :upvote]
   def index
     @books = Book.all
   end
@@ -28,6 +28,12 @@ class BooksController < ApplicationController
   end
 
   def edit
+  end
+
+  def upvote
+    @book.upvotes += 1
+    @book.save
+    redirect_to book_path(@book)
   end
 
   private
