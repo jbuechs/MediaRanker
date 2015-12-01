@@ -4,6 +4,10 @@ class AlbumsController < ApplicationController
     @albums = Album.all
   end
 
+  def new
+    @album = Album.new
+  end
+
   def show
   end
 
