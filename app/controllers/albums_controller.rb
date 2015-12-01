@@ -1,7 +1,7 @@
 class AlbumsController < ApplicationController
   before_action :get_album, only:[:show, :destroy, :update, :edit, :upvote]
   def index
-    @albums = Album.all
+    @albums = Album.all.order(:upvotes).reverse
   end
 
   def new

@@ -1,7 +1,7 @@
 class BooksController < ApplicationController
   before_action :get_book, only:[:show, :destroy, :update, :edit, :upvote]
   def index
-    @books = Book.all
+    @books = Book.all.order(:upvotes).reverse
   end
 
   def new
