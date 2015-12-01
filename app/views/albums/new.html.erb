@@ -1,2 +1,2 @@
 <% provide(:title, "New Album")%>
-<%= render partial: 'form' %>
+<%= render partial: 'shared/form', locals: {media: @album, who_by: "artist"} %>
