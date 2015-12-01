@@ -1,5 +1,5 @@
 class MoviesController < ApplicationController
-  before_action :get_movie, only:[:show, :destroy, :update, :edit]
+  before_action :get_movie, only:[:show, :destroy, :update, :edit, :upvote]
 
   def index
     @movies = Movie.all
@@ -29,6 +29,12 @@ class MoviesController < ApplicationController
   end
 
   def edit
+  end
+
+  def upvote
+    @movie.upvotes += 1
+    @movie.save
+    redirect_to movie_path(@movie)
   end
 
   private
