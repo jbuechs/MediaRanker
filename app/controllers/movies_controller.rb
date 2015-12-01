@@ -10,8 +10,8 @@ class MoviesController < ApplicationController
   end
 
   def create
-    Movie.create(movie_params[:movie])
-    redirect_to movies_path
+    movie = Movie.new(movie_params[:movie])
+    movie.save ? (redirect_to movies_path) : (render :new)
   end
 
 
