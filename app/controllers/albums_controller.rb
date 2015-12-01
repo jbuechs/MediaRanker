@@ -1,5 +1,5 @@
 class AlbumsController < ApplicationController
-  before_action :get_album, only:[:show, :destroy, :update, :edit]
+  before_action :get_album, only:[:show, :destroy, :update, :edit, :upvote]
   def index
     @albums = Album.all
   end
@@ -27,6 +27,12 @@ class AlbumsController < ApplicationController
   end
 
   def edit
+  end
+
+  def upvote
+    @album.upvotes += 1
+    @album.save
+    redirect_to album_path(@album)
   end
 
   private
