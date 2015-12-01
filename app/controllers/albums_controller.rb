@@ -8,6 +8,8 @@ class AlbumsController < ApplicationController
   end
 
   def destroy
+    @album.destroy
+    redirect_to albums_path
   end
 
   def update
