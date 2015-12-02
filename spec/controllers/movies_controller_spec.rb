@@ -15,13 +15,13 @@ RSpec.describe MoviesController, type: :controller do
     end
   end
 
-  # describe "GET 'edit'" do
-  #   it "renders edit view" do
-  #     movie = Movie.create(title:"Schindler's List 2", director: "Steven Spielberg")
-  #     get :edit, movie
-  #     expect(subject).to render_template :edit, movie
-  #   end
-  # end
+  describe "GET 'edit'" do
+    it "renders edit view" do
+      movie = Movie.create(title:"Schindler's List 2", director: "Steven Spielberg")
+      get :edit, id: movie.id
+      expect(subject).to render_template :edit
+    end
+  end
 
   describe "GET 'show'" do
     let(:new_movie) do
