@@ -32,6 +32,7 @@ RSpec.describe AlbumsController, type: :controller do
   end
 
   describe "POST 'create'" do
+
     let(:good_params) do
       {
         album: {
@@ -48,6 +49,15 @@ RSpec.describe AlbumsController, type: :controller do
       }
     end
     it "redirects to show on success" do
+      # subject { post :create, :new_album => {
+      #   album: {
+      #     title: "The Sound and the Fury",
+      #     artist: "William Faulkner"
+      #   }
+      # }}
+      # binding.pry
+      # expect(subject).to redirect_to album_path(assigns(:new_album))
+
       post :create, good_params
       new_album = Album.last
       expect(subject).to redirect_to album_path(new_album.id)
