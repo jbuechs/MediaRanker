@@ -1,4 +1,5 @@
 class AlbumsController < ApplicationController
+  include SharedMethods
   before_action :get_album, only:[:show, :destroy, :update, :edit, :upvote]
   def index
     @albums = Album.all.order(:upvotes).reverse
@@ -6,9 +7,6 @@ class AlbumsController < ApplicationController
 
   def new
     @album = Album.new
-  end
-
-  def show
   end
 
   def destroy
@@ -28,9 +26,6 @@ class AlbumsController < ApplicationController
       @album = album
       render :new
     end
-  end
-
-  def edit
   end
 
   def upvote

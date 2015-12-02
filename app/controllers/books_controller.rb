@@ -1,4 +1,5 @@
 class BooksController < ApplicationController
+  include SharedMethods
   before_action :get_book, only:[:show, :destroy, :update, :edit, :upvote]
   def index
     @books = Book.all.order(:upvotes).reverse
@@ -6,10 +7,6 @@ class BooksController < ApplicationController
 
   def new
     @book = Book.new
-  end
-
-
-  def show
   end
 
   def destroy
@@ -29,9 +26,6 @@ class BooksController < ApplicationController
       @book = book
       render :new
     end
-  end
-
-  def edit
   end
 
   def upvote
