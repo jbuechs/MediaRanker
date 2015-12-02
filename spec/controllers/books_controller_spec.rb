@@ -67,8 +67,6 @@ RSpec.describe BooksController, type: :controller do
       good_params = {
         id: book.id,
         book: {
-          title: "The Sound and the Fury",
-          author: "William Faulkner",
           description: "Challenging read but worth the effort."
         }
       }
@@ -76,7 +74,14 @@ RSpec.describe BooksController, type: :controller do
       expect(subject).to redirect_to book_path(book.id)
     end
     it "renders edit page on fail" do
-
+      bad_params = {
+        id: book.id,
+        book: {
+          title: "",
+        }
+      }
+      patch :update, bad_params
+      expect(subject).to render_template :edit
     end
   end
 
