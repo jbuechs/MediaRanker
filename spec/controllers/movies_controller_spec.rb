@@ -76,7 +76,11 @@ RSpec.describe MoviesController, type: :controller do
   end
 
   describe "DELETE 'destroy'" do
-
+    it "redirects to index page" do
+      movie = Movie.create(title: "Schindler's List", director: "Steven Spielberg")
+      delete :destroy, id: movie.id
+      expect(subject).to redirect_to movies_path
+    end
   end
 
   describe "POST 'upvote'" do
