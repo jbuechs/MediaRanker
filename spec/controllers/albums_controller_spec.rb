@@ -69,8 +69,10 @@ RSpec.describe AlbumsController, type: :controller do
   end
 
   describe "PATCH 'update'" do
+    let (:album) do
+      Album.create(title: "Ray of Light", artist: "Madonna")
+    end
     it "redirects to album on success" do
-      album = Album.create(title: "Ray of Light", artist: "Madonna")
       update_params = {
         id: album.id,
         album: {
@@ -81,16 +83,14 @@ RSpec.describe AlbumsController, type: :controller do
       patch :update, update_params
       expect(subject).to redirect_to album_path(album.id)
     end
-
     it "renders edit template on fail" do
-      # album = Album.create(title: "Ray of Light", artist: "Madonna")
-      # update_params = {
-      #   id: album.id,
-      #   album: {
-      #     artist: "Madonna",
-      #     description: "Good beats" }
-      # }
-
+      bad_params = {
+        id: album.id,
+        album: {
+          artist: "",}
+      }
+      patch :update, bad_params
+      expect(subject).to render_template (:edit)
     end
 
   end
