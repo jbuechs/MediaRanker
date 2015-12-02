@@ -8,6 +8,13 @@ RSpec.describe AlbumsController, type: :controller do
     end
   end
 
+  describe "GET 'new'" do
+    it "renders the new page" do
+      get :new
+      expect(subject).to render_template :new
+    end
+  end
+
   describe "GET 'edit'" do
     it "renders edit page" do
       album = Album.create(title: "Ray of Light", artist: "Madonna")
@@ -52,14 +59,45 @@ RSpec.describe AlbumsController, type: :controller do
   end
 
   describe "PATCH 'update'" do
+    it "redirects to album on success" do
+      album = Album.create(title: "Ray of Light", artist: "Madonna")
+      update_params = {
+        id: album.id,
+        album: {
+          title: "Ray of Light",
+          artist: "Madonna",
+          description: "Good beats" }
+      }
+      patch :update, update_params
+      expect(subject).to redirect_to album_path(album.id)
+    end
+
+    it "renders edit template on fail" do
+      # album = Album.create(title: "Ray of Light", artist: "Madonna")
+      # update_params = {
+      #   id: album.id,
+      #   album: {
+      #     artist: "Madonna",
+      #     description: "Good beats" }
+      # }
+
+    end
 
   end
 
   describe "DELETE 'destroy'" do
-
+    it "redirects to index on delete" do
+      album = Album.create(title: "Ray of Light", artist: "Madonna")
+      delete :destroy, id: album.id
+      expect(subject).to redirect_to albums_path
+    end
   end
 
   describe "POST 'upvote'" do
-
+    it "redirects to show page" do
+      album = Album.create(title: "Ray of Light", artist: "Madonna")
+      post :upvote, id: album.id
+      expect(subject).to redirect_to album_path(album.id)
+    end
   end
 end
