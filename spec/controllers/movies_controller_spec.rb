@@ -73,6 +73,9 @@ RSpec.describe MoviesController, type: :controller do
       patch :update, update_params
       expect(subject).to redirect_to movie_path(movie.id)
     end
+    it "redirects to edit page on fail" do
+      
+    end
   end
 
   describe "DELETE 'destroy'" do
