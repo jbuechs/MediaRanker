@@ -1,4 +1,5 @@
 class MoviesController < ApplicationController
+  include SharedMethods
   before_action :get_movie, only:[:show, :destroy, :update, :edit, :upvote]
 
   def index
@@ -19,10 +20,6 @@ class MoviesController < ApplicationController
     end
   end
 
-
-  def show
-  end
-
   def destroy
     @movie.destroy
     redirect_to movies_path
@@ -30,9 +27,6 @@ class MoviesController < ApplicationController
 
   def update
     @movie.update(movie_params[:movie]) ? (redirect_to movie_path(@movie)) : (render :edit)
-  end
-
-  def edit
   end
 
   def upvote
