@@ -24,8 +24,7 @@ class MoviesController < ApplicationController
   end
 
   def update
-    @movie.update(movie_params[:movie])
-    redirect_to movie_path(@movie)
+    @movie.update(movie_params[:movie]) ? (redirect_to movie_path(@movie)) : (render :edit)
   end
 
   def edit

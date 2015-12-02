@@ -17,8 +17,7 @@ class AlbumsController < ApplicationController
   end
 
   def update
-    @album.update(album_params[:album])
-    redirect_to album_path(@album)
+    @album.update(album_params[:album]) ? (redirect_to album_path(@album)) : (render :edit)
   end
 
   def create

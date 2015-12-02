@@ -61,12 +61,13 @@ RSpec.describe MoviesController, type: :controller do
   end
 
   describe "PATCH 'update'" do
+    let(:movie) do
+      Movie.create(title: "Schindler's List", director: "Steven Spielberg")
+    end
     it "redirects to show page on success" do
-      movie = Movie.create(title: "Schindler's List", director: "Steven Spielberg")
       update_params = {
         movie: {
           title: "Schindler's List 2",
-          director: "Steven Spielberg"
         },
         id: movie.id
       }
@@ -74,7 +75,14 @@ RSpec.describe MoviesController, type: :controller do
       expect(subject).to redirect_to movie_path(movie.id)
     end
     it "redirects to edit page on fail" do
-      
+      bad_params = {
+        movie: {
+          title: "",
+        },
+        id: movie.id
+      }
+      patch :update, bad_params
+      expect(subject).to render_template :edit
     end
   end
 
