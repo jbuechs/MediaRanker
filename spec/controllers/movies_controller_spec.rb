@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe MoviesController, type: :controller do
   it_behaves_like 'shared_tests'
-  
+
   describe "GET 'edit'" do
     it "renders edit view" do
       movie = Movie.create(title:"Schindler's List 2", director: "Steven Spielberg")
@@ -89,6 +89,5 @@ RSpec.describe MoviesController, type: :controller do
       expect(subject).to redirect_to movie_path(movie.id)
     end
   end
-
 
 end

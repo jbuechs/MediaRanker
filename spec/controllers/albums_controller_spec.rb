@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe AlbumsController, type: :controller do
-
   it_behaves_like 'shared_tests'
 
   describe "GET 'edit'" do
@@ -21,7 +20,6 @@ RSpec.describe AlbumsController, type: :controller do
   end
 
   describe "POST 'create'" do
-
     let(:good_params) do
       {
         album: {
@@ -72,7 +70,6 @@ RSpec.describe AlbumsController, type: :controller do
       patch :update, bad_params
       expect(subject).to render_template (:edit)
     end
-
   end
 
   describe "DELETE 'destroy'" do
