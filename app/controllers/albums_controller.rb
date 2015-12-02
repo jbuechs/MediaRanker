@@ -22,7 +22,12 @@ class AlbumsController < ApplicationController
 
   def create
     album = Album.new(album_params[:album])
-    album.save ? (redirect_to album_path(album.id)) : (render :new)
+    if album.save
+      redirect_to album_path(album.id)
+    else
+      @album = album
+      render :new
+    end
   end
 
   def edit
