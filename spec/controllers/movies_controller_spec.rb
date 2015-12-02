@@ -80,7 +80,11 @@ RSpec.describe MoviesController, type: :controller do
   end
 
   describe "POST 'upvote'" do
-
+    it "redirects to show page" do
+      movie = Movie.create(title: "Schindler's List", director: "Steven Spielberg")
+      post :upvote, id: movie.id
+      expect(subject).to redirect_to movie_path(movie.id)
+    end
   end
 
 
