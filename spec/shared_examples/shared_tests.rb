@@ -1,33 +1,8 @@
+require 'rails_helper'
+
+
 shared_examples_for 'shared_tests' do
-  let(:good_params) do
-    {
-      album: {
-        title: "Hello, World!",
-        creator: "Jennie"
-      }
-    }
-  end
-  let(:bad_params) do
-    {
-      album: {
-        title: "Hello, World!"
-      }
-    }
-  end
-  let(:update_params) do
-    {
-      id: new_medium.id,
-      album: {
-        description: "Great product!" }
-    }
-  end
-  let(:bad_update_params) do
-    {
-      id: new_medium.id,
-      album: {
-        title: "" }
-    }
-  end
+
 
   describe "GET 'index'" do
     it "is successful" do
@@ -45,7 +20,7 @@ shared_examples_for 'shared_tests' do
 
   describe "GET 'edit'" do
     it "renders edit page" do
-      new_medium = MODEL.create(title: "Hello, World!", creator: "Jennie")
+      new_medium = model.create(title: "Hello, World!", creator: "Jennie")
       get :edit, id: new_medium.id
       expect(subject).to render_template :edit
     end
@@ -53,7 +28,7 @@ shared_examples_for 'shared_tests' do
 
   describe "GET 'show'" do
     it "renders show page" do
-      new_medium = MODEL.create(title: "Hello, World!", creator: "Jennie")
+      new_medium = model.create(title: "Hello, World!", creator: "Jennie")
       get :show, id: new_medium.id
       expect(subject).to render_template :show, id: new_medium.id
     end
@@ -62,8 +37,8 @@ shared_examples_for 'shared_tests' do
   describe "POST 'create'" do
     it "redirects to show on success" do
       post :create, good_params
-      new_medium = MODEL.last
-      expect(subject).to redirect_to album_path(new_medium.id) # need to fix this path
+      new_medium = model.last
+      expect(subject).to redirect_to polymorphic_path(new_medium) # need to fix this path
     end
     it "renders new on fail" do
       post :create, bad_params
@@ -73,11 +48,11 @@ shared_examples_for 'shared_tests' do
 
   describe "PATCH 'update'" do
     let (:new_medium) do
-      MODEL.create(title: "Hello, World!", creator: "Jennie")
+      model.create(title: "Hello, World!", creator: "Jennie")
     end
     it "redirects to album on success" do
       patch :update, update_params
-      expect(subject).to redirect_to album_path(new_medium.id) # need to fix this path
+      expect(subject).to redirect_to polymorphic_path(new_medium) # need to fix this path
     end
     it "renders edit template on fail" do
       patch :update, bad_update_params
@@ -87,17 +62,17 @@ shared_examples_for 'shared_tests' do
 
   describe "DELETE 'destroy'" do
     it "redirects to index on delete" do
-      new_medium = MODEL.create(title: "Hello, World!", creator: "Jennie")
+      new_medium = model.create(title: "Hello, World!", creator: "Jennie")
       delete :destroy, id: new_medium.id
-      expect(subject).to redirect_to albums_path # need to fix this path
+      expect(subject).to redirect_to polymorphic_path(model.name.downcase.pluralize) # need to fix this path
     end
   end
 
   describe "POST 'upvote'" do
     it "redirects to show page" do
-      new_medium = MODEL.create(title: "Hello, World!", creator: "Jennie")
+      new_medium = model.create(title: "Hello, World!", creator: "Jennie")
       post :upvote, id: new_medium.id
-      expect(subject).to redirect_to album_path(new_medium.id) # need to fix this path
+      expect(subject).to redirect_to polymorphic_path(new_medium) # need to fix this path
     end
   end
 
