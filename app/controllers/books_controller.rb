@@ -40,6 +40,6 @@ class BooksController < ApplicationController
   end
 
   def book_params
-    params.permit(book:[:id, :title, :author, :description, :upvotes])
+    params.permit(book:[:id, :title, :creator, :description, :upvotes])
   end
 end

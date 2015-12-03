@@ -41,6 +41,6 @@ class MoviesController < ApplicationController
   end
 
   def movie_params
-    params.permit(movie:[:id, :title, :director, :description, :upvotes])
+    params.permit(movie:[:id, :title, :creator, :description, :upvotes])
   end
 end
